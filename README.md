@@ -1,8 +1,8 @@
 # WeIntern - Multi-Utility Workspace
-file:///C:/Users/rudra/calculator/index.html 
+
 A premium, modern, glassmorphic single-page web application featuring three essential utilities: a **Precision Calculator**, a **Focus To-Do List**, and an **Interactive Counter**.
 
----
+deployed link:- https://rudrabambal.github.io/weIntern-Task/
 
 ## 🚀 Key Features
 
