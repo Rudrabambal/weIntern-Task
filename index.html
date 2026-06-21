@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Hub</title>
+  <meta name="description"
+    content="A premium utility application featuring a Calculator, a To-Do List, and a Counter inside a single glassmorphic workspace.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <!-- Background Glows for Premium Aesthetics -->
+  <div class="glow-bg">
+    <div class="glow-sphere sphere-1"></div>
+    <div class="glow-sphere sphere-2"></div>
+    <div class="glow-sphere sphere-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-logo">
+          <i data-lucide="layers" class="logo-icon"></i>
+        </div>
+        <div class="brand-text">
+          <h1>WeIntern</h1>
+          <span class="brand-tagline">Task Manager</span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <button id="back-to-dashboard" class="btn btn-secondary btn-icon-only hidden" title="Back to Dashboard">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span id="current-view-label">Dashboard</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+
+      <!-- 1. LANDING DASHBOARD VIEW -->
+      <section id="dashboard-view" class="view-section active">
+        <div class="welcome-heading">
+          <h2>Welcome to your Workspace</h2>
+          <p>Select a utility below to launch it inside your glassmorphic environment.</p>
+        </div>
+
+        <div class="cards-grid">
+          <!-- Card: Calculator -->
+          <div class="utility-card" data-target="calculator">
+            <div class="card-glow"></div>
+            <div class="card-icon-wrapper calc-theme">
+              <i data-lucide="calculator"></i>
+            </div>
+            <h3 class="card-title">Precision Calculator</h3>
+            <p class="card-desc">Execute high-precision standard arithmetic operations with keyboard hotkeys and
+              operations history.</p>
+            <button class="btn btn-primary card-action">
+              <span>Open Calculator</span>
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- Card: To-Do List -->
+          <div class="utility-card" data-target="todo">
+            <div class="card-glow"></div>
+            <div class="card-icon-wrapper todo-theme">
+              <i data-lucide="check-square"></i>
+            </div>
+            <h3 class="card-title">Focus To-Do List</h3>
+            <p class="card-desc">Track and filter active and completed items with persistence in your browser local
+              storage.</p>
+            <button class="btn btn-primary card-action">
+              <span>Open To-Do List</span>
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- Card: Counter -->
+          <div class="utility-card" data-target="counter">
+            <div class="card-glow"></div>
+            <div class="card-icon-wrapper counter-theme">
+              <i data-lucide="plus-minus"></i>
+            </div>
+            <h3 class="card-title">Interactive Counter</h3>
+            <p class="card-desc">Keep track of clicks, items, or intervals with custom step counts and quick resetting
+              controls.</p>
+            <button class="btn btn-primary card-action">
+              <span>Open Counter</span>
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. CALCULATOR VIEW -->
+      <section id="calculator-view" class="view-section">
+        <div class="tool-layout two-column">
+          <!-- Main Calculator Card -->
+          <div class="glass-card calculator-card">
+            <div class="tool-header">
+              <div class="tool-title">
+                <i data-lucide="calculator" class="title-icon calc-color"></i>
+                <h3>Calculator</h3>
+              </div>
+              <button class="btn-clear-history calc-color" id="calc-clear-btn" title="Clear All">Clear C</button>
+            </div>
+
+            <div class="calc-display-container">
+              <div class="calc-formula" id="calc-formula"></div>
+              <div class="calc-output" id="calc-output">0</div>
+            </div>
+
+            <div class="calc-keypad">
+              <button class="calc-key key-func" data-val="C">C</button>
+              <button class="calc-key key-func" data-val="backspace"><i data-lucide="delete"></i></button>
+              <button class="calc-key key-func" data-val="%">%</button>
+              <button class="calc-key key-op" data-val="/">&divide;</button>
+
+              <button class="calc-key key-num" data-val="7">7</button>
+              <button class="calc-key key-num" data-val="8">8</button>
+              <button class="calc-key key-num" data-val="9">9</button>
+              <button class="calc-key key-op" data-val="*">&times;</button>
+
+              <button class="calc-key key-num" data-val="4">4</button>
+              <button class="calc-key key-num" data-val="5">5</button>
+              <button class="calc-key key-num" data-val="6">6</button>
+              <button class="calc-key key-op" data-val="-">&minus;</button>
+
+              <button class="calc-key key-num" data-val="1">1</button>
+              <button class="calc-key key-num" data-val="2">2</button>
+              <button class="calc-key key-num" data-val="3">3</button>
+              <button class="calc-key key-op" data-val="+">+</button>
+
+              <button class="calc-key key-func" data-val="pm">&plusmn;</button>
+              <button class="calc-key key-num" data-val="0">0</button>
+              <button class="calc-key key-num" data-val=".">.</button>
+              <button class="calc-key key-equals" data-val="=">=</button>
+            </div>
+          </div>
+
+          <!-- History Sidebar -->
+          <div class="glass-card tool-sidebar">
+            <div class="sidebar-header">
+              <h4>History</h4>
+              <button id="clear-calc-history" class="btn btn-text btn-sm">Clear</button>
+            </div>
+            <div class="sidebar-list" id="calc-history-list">
+              <div class="empty-state">
+                <i data-lucide="history"></i>
+                <p>No calculation history yet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. TO-DO LIST VIEW -->
+      <section id="todo-view" class="view-section">
+        <div class="tool-layout two-column">
+          <!-- Main Todo Card -->
+          <div class="glass-card todo-card">
+            <div class="tool-header">
+              <div class="tool-title">
+                <i data-lucide="check-square" class="title-icon todo-color"></i>
+                <h3>Focus To-Do</h3>
+              </div>
+            </div>
+
+            <!-- Task Progress -->
+            <div class="todo-progress-container">
+              <div class="todo-progress-header">
+                <span>Task Completion</span>
+                <span id="todo-progress-percent">0%</span>
+              </div>
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="todo-progress-bar" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Task Input -->
+            <form id="todo-form" class="todo-input-group">
+              <input type="text" id="todo-input" class="form-input" placeholder="What needs to be done?" required
+                autocomplete="off">
+              <button type="submit" class="btn btn-primary todo-btn-add">
+                <i data-lucide="plus"></i>
+                <span>Add Task</span>
+              </button>
+            </form>
+
+            <!-- Tasks List -->
+            <div class="todo-list-container">
+              <ul class="todo-list" id="todo-list-items">
+                <!-- Injected dynamically -->
+              </ul>
+              <div class="empty-state" id="todo-empty-state">
+                <i data-lucide="clipboard-list"></i>
+                <p>You're all caught up! Add a task to start.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Filters/Stats -->
+          <div class="glass-card tool-sidebar">
+            <div class="sidebar-header">
+              <h4>Filters & Actions</h4>
+            </div>
+
+            <div class="filter-group">
+              <button class="filter-btn active" data-filter="all">
+                <i data-lucide="list"></i>
+                <span>All Tasks</span>
+                <span class="badge" id="badge-all">0</span>
+              </button>
+              <button class="filter-btn" data-filter="active">
+                <i data-lucide="circle"></i>
+                <span>Active</span>
+                <span class="badge" id="badge-active">0</span>
+              </button>
+              <button class="filter-btn" data-filter="completed">
+                <i data-lucide="check-circle-2"></i>
+                <span>Completed</span>
+                <span class="badge" id="badge-completed">0</span>
+              </button>
+            </div>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-actions">
+              <button id="todo-clear-completed" class="btn btn-outline btn-full">
+                <i data-lucide="trash-2"></i>
+                <span>Clear Completed</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. COUNTER VIEW -->
+      <section id="counter-view" class="view-section">
+        <div class="tool-layout two-column">
+          <!-- Main Counter Card -->
+          <div class="glass-card counter-card">
+            <div class="tool-header">
+              <div class="tool-title">
+                <i data-lucide="plus-minus" class="title-icon counter-color"></i>
+                <h3>Interactive Counter</h3>
+              </div>
+            </div>
+
+            <div class="counter-display-wrapper">
+              <div class="counter-value" id="counter-value">0</div>
+            </div>
+
+            <div class="counter-controls">
+              <button id="counter-decrement" class="btn btn-counter btn-decrement" title="Decrement">
+                <i data-lucide="minus"></i>
+              </button>
+              <button id="counter-reset" class="btn btn-counter btn-reset" title="Reset Counter">
+                <i data-lucide="rotate-ccw"></i>
+              </button>
+              <button id="counter-increment" class="btn btn-counter btn-increment" title="Increment">
+                <i data-lucide="plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Counter Settings & History -->
+          <div class="glass-card tool-sidebar">
+            <div class="sidebar-header">
+              <h4>Counter Config</h4>
+            </div>
+
+            <!-- Custom Step Size -->
+            <div class="settings-group">
+              <label for="counter-step" class="settings-label">Step Value</label>
+              <div class="step-input-wrapper">
+                <input type="number" id="counter-step" class="form-input text-center" value="1" min="1" max="1000">
+                <div class="step-presets">
+                  <button class="btn btn-preset btn-sm" data-step="1">1</button>
+                  <button class="btn btn-preset btn-sm" data-step="5">5</button>
+                  <button class="btn btn-preset btn-sm" data-step="10">10</button>
+                  <button class="btn btn-preset btn-sm" data-step="50">50</button>
+                </div>
+              </div>
+            </div>
+
+            <hr class="sidebar-divider">
+
+            <!-- Activity Log -->
+            <div class="sidebar-inner-section">
+              <div class="sidebar-header-inline">
+                <h5>Activity Log</h5>
+                <button id="clear-counter-history" class="btn btn-text btn-xs">Clear</button>
+              </div>
+              <div class="sidebar-list small-list" id="counter-history-list">
+                <div class="empty-state small-state">
+                  <i data-lucide="activity"></i>
+                  <p>No activity logged</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>&copy; Designed by Rudra.</p>
+    </footer>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/calculator.js"></script>
+  <script src="js/todo.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Initialize Lucide icons on page load
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
